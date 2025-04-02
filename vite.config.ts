@@ -9,7 +9,7 @@ const loaderPlugin = (): Plugin => {
     writeBundle(options, bundle) {
       // Find the main entry point JS file
       const mainEntry = Object.entries(bundle).find(
-        ([name]) => name.startsWith("assets/main-") && name.endsWith(".js"),
+        ([name]) => name.startsWith("assets/index-") && name.endsWith(".js"),
       )
 
       if (!mainEntry) {
