@@ -2,6 +2,6 @@
   command = "npm run build"
 
 [[headers]]
-  for = "/index-*.js"
+  for = "/assets/index-*.js"
   [headers.values]
     Access-Control-Allow-Origin = "*"
