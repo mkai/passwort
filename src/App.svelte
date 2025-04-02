@@ -82,6 +82,6 @@
 
 <style>
   .generator {
-    min-height: 100px;
+    min-height: 80px;
   }
 </style>
