@@ -23,7 +23,6 @@ const loaderPlugin = (): Plugin => {
           const baseUrl = currentScript ? new URL('.', currentScript.src).href : '/';
           const script = document.createElement('script');
           script.type = 'module';
-          script.crossOrigin = 'anonymous';
           script.src = baseUrl + '${mainEntry[0]}';
           document.head.appendChild(script);
         })();
