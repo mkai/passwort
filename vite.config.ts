@@ -13,7 +13,7 @@ const loaderPlugin = (): Plugin => {
       )
 
       if (!mainEntry) {
-        return
+        throw new Error("failed to generate loader: main entry not found")
       }
 
       // Create loader script content
