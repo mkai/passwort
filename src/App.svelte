@@ -3,7 +3,6 @@
 <script lang="ts">
   import { type ChangeEventHandler } from "svelte/elements"
   import PasswordGenerator from "./lib/PasswordGenerator.svelte"
-  import { getWordlist } from "./lib/getWordlist"
   import {
     languages,
     wordlists,
@@ -50,13 +49,7 @@
 
 <main>
   <section class="generator">
-    {#await getWordlist({ name: wordlistName, language, minLength: 1000 })}
-      <p>Loading wordlist...</p>
-    {:then wordlist}
-      <PasswordGenerator {wordlist} {numWords} />
-    {:catch err}
-      <p>Error loading wordlist: {err.message}</p>
-    {/await}
+    <PasswordGenerator {wordlistName} {language} {numWords} />
   </section>
 
   <section class="controls">
@@ -83,5 +76,9 @@
 <style>
   .generator {
     min-height: 100px;
+  }
+
+  .controls {
+    margin-top: 10px;
   }
 </style>
