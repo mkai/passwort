@@ -43,22 +43,41 @@ function splitLines(lines: string): string[] {
     .filter((line) => line && !line.startsWith("#"))
 }
 
+function buildWordlist(language: LanguageCode, lines: string[]): string[] {
+  const wordlist = new Set<string>()
+
+  for (const line of lines) {
+    const words = line
+      .split(/\s+/)
+      .map((word) => word.trim())
+      .filter(Boolean)
+      .map((word) => word.toLocaleLowerCase(language))
+      .map((word) => word.replace(/[.,!¡¿?;:%]/g, "")) // Remove punctuation
+
+    for (const word of words) {
+      if (!wordlist.has(word)) {
+        wordlist.add(word)
+      }
+    }
+  }
+
+  return Array.from(wordlist)
+}
+
 type GetWordlistOptions = {
   name: WordlistName
   language: LanguageCode
   minLength: number
-  normalizer?: (word: string) => string
 }
 
 export async function getWordlist({
   name,
   language,
   minLength,
-  normalizer = (word: string) => word.toLowerCase(),
 }: GetWordlistOptions): Promise<string[]> {
   const text = await fetchWordlist(name, language)
   const lines = splitLines(text)
-  const wordlist = lines.map(normalizer ?? ((word) => word))
+  const wordlist = buildWordlist(language, lines)
 
   if (minLength && wordlist.length < minLength) {
     throw new Error("word list too short")
