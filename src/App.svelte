@@ -1,8 +1,7 @@
-<svelte:options customElement="password-generator" />
-
 <script lang="ts">
   import { type ChangeEventHandler } from "svelte/elements"
-  import PasswordGenerator from "./lib/PasswordGenerator.svelte"
+  import Heading1 from "./lib/Heading1.svelte"
+  import PasswordGenerator from "./PasswordGenerator.svelte"
   import {
     languages,
     wordlists,
@@ -48,6 +47,7 @@
 </script>
 
 <main>
+  <Heading1>Password Generator</Heading1>
   <section class="generator">
     <PasswordGenerator {wordlistName} {language} {numWords} />
   </section>
@@ -74,11 +74,7 @@
 </main>
 
 <style>
-  .generator {
-    min-height: 100px;
-  }
-
-  .controls {
-    margin-top: 10px;
+  main {
+    max-width: 992px;
   }
 </style>
