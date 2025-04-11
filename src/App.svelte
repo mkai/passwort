@@ -55,19 +55,23 @@
   <section class="controls">
     <select name="language" onchange={handleLanguageChange}>
       {#each Object.entries(languages) as [languageCode, name]}
-        <option value={languageCode}>{name}</option>
+        <option value={languageCode} selected={languageCode === language}
+          >{name}</option
+        >
       {/each}
     </select>
 
     <select name="num-words" onchange={handleNumWordsChange}>
-      {#each [4, 5, 6] as numWords}
-        <option value={numWords}>{numWords} words</option>
+      {#each [4, 5, 6] as numWordsChoice}
+        <option value={numWordsChoice} selected={numWordsChoice === numWords}
+          >{numWordsChoice} words</option
+        >
       {/each}
     </select>
 
     <select name="wordlist" onchange={handleWordlistNameChange}>
       {#each Object.entries(wordlists) as [key, name]}
-        <option value={key}>{name}</option>
+        <option value={key} selected={key === wordlistName}>{name}</option>
       {/each}
     </select>
   </section>
