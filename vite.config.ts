@@ -45,7 +45,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        index: path.resolve(__dirname, "src", "main.ts"),
+        index: path.resolve(__dirname, "index.html"),
         generator: path.resolve(__dirname, "src", "PasswordGenerator.svelte"),
       },
     },
