@@ -32,7 +32,7 @@
     wordlist = await getWordlist({
       name: wordlistName,
       language,
-      minLength: 800, // FIXME: bigger word lists (not enough entropy)
+      minLength: 7776,
     })
 
     // Generate a password when the component is first loaded

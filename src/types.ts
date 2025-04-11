@@ -1,4 +1,5 @@
 export const wordlists = {
+  diceware: "Diceware",
   "1000-common": "1000 Common Words",
 }
 

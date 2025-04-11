@@ -11,9 +11,9 @@
     type WordlistName,
   } from "./types"
 
-  let language: LanguageCode = $state<LanguageCode>("en")
-  let numWords: number = $state<number>(4)
-  let wordlistName: WordlistName = $state<WordlistName>("1000-common")
+  let language: LanguageCode = $state<LanguageCode>("de")
+  let numWords: number = $state<number>(5)
+  let wordlistName: WordlistName = $state<WordlistName>("diceware")
 
   const handleLanguageChange: ChangeEventHandler<HTMLSelectElement> = (
     event,

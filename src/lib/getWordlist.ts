@@ -1,12 +1,22 @@
 import { type LanguageCode, type WordlistName } from "../types"
 
-const wordlistUrls: Record<WordlistName, Record<LanguageCode, string>> = {
+const wordlistUrls: Record<
+  WordlistName,
+  Record<LanguageCode, string | undefined>
+> = {
   "1000-common": {
     en: "https://raw.githubusercontent.com/bukowa/1000-common-words/934f7a24fdc50e57b25e2bd1e0bfa9d6428d6601/English-1000-common.txt",
     es: "https://raw.githubusercontent.com/bukowa/1000-common-words/934f7a24fdc50e57b25e2bd1e0bfa9d6428d6601/Spanish-1000-common.txt",
     de: "https://raw.githubusercontent.com/bukowa/1000-common-words/934f7a24fdc50e57b25e2bd1e0bfa9d6428d6601/German-1000-common.txt",
     fr: "https://raw.githubusercontent.com/bukowa/1000-common-words/934f7a24fdc50e57b25e2bd1e0bfa9d6428d6601/French-1000-common.txt",
     it: "https://raw.githubusercontent.com/bukowa/1000-common-words/934f7a24fdc50e57b25e2bd1e0bfa9d6428d6601/Italian-1000-common.txt",
+  },
+  diceware: {
+    en: undefined,
+    es: undefined,
+    de: "https://raw.githubusercontent.com/klamann/diceware-dereko/b369abd3fe76c502687bde38c77704657ae62215/diceware-dereko.txt",
+    fr: undefined,
+    it: undefined,
   },
 }
 
@@ -48,6 +58,7 @@ function buildWordlist(language: LanguageCode, lines: string[]): string[] {
 
   for (const line of lines) {
     const words = line
+      .replace(/^\d{5}\s/, "") // remove Diceware prefix (11111, 11112, etc.)
       .split(/\s+/)
       .map((word) => word.trim())
       .filter(Boolean)
